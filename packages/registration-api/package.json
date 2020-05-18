@@ -6,11 +6,15 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/app/server.js",
-    "dev": "nodemon --watch ../../**/**.js src/app/server.js"
+    "dev": "nodemon --watch ../../**/**.js src/app/server.js",
+    "test-unit": "mocha --colors --exit --timeout 20000 './test/unit/**/*.spec.js'"
   },
   "dependencies": {
     "koa": "^2.12.0",
-    "koa-router": "^8.0.8",
+    "koa-router": "^8.0.8"
+  },
+  "devDependencies": {
+    "mocha": "^7.1.2",
     "nodemon": "^2.0.4"
   }
 }

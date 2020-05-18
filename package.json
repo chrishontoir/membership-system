@@ -1,5 +1,6 @@
 {
   "name": "membership-system",
+  "private": true,
   "version": "1.0.0",
   "description": "Membership System Monorepo",
   "main": "index.js",
@@ -14,7 +15,23 @@
     "packages/*"
   ],
   "scripts": {
+    "database": "docker-compose up --build --force-recreate database",
+
     "start:registration-api": "NODE_ENV=dev lerna run --scope registration-api start --stream",
-    "dev:registration-api": "NODE_ENV=dev lerna run --scope registration-api dev --stream"
+    "start:authentication-api": "NODE_ENV=dev lerna run --scope authentication-api start --stream",
+    "start:transactions-api": "NODE_ENV=dev lerna run --scope transactions-api start --stream",
+    "start:payment-history-api": "NODE_ENV=dev lerna run --scope payment-history-api start --stream",
+
+    "dev:registration-api": "NODE_ENV=dev lerna run --scope registration-api dev --stream",
+
+    "docker:registration-api": "docker-compose up --build --force-recreate registration-api",
+
+    "docker-dev:registration-api": "docker-compose up -f docker-compose-dev.yaml --build --force-recreate registration-api",
+
+    "test-unit:registration-api": "NODE_ENV=test lerna run --scope registration-api test-unit --stream",
+
+    "test-integration:registration-api": "",
+
+    "test-coverage:registration-api": ""
   }
 }
