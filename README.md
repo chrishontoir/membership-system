@@ -1,1 +1,2 @@
-# membership-system
+# MemStem
+A membership system
