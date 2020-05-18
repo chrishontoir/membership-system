@@ -24,3 +24,9 @@ services:
     ports: 
       - 3000:3000
     container_name: registration-api
+    depends_on:
+      - database
+networks:
+  default:
+    external:
+      name: membership_system
