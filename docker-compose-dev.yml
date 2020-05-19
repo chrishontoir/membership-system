@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  database:
+    build:
+      context: ./packages/database
+      dockerfile: ./Dockerfile
+    container_name: database
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      DB_NAME: "blog"
+      POSTGRES_DB: blog
+      PGPORT: 5432
+  registration-api:
+    build:
+      context: .
+      dockerfile: ./packages/registration-api/Dockerfile
+      args:
+        PORT: 3000
+    command: "yarn dev:registration-api"
+    ports: 
+      - 3000:3000
+    container_name: registration-api
+    volumes:
+      -  .:/opt/app/
+      - /opt/app/node_modules/
+    depends_on:
+      - database
+networks:
+  default:
+    external:
+      name: membership_system

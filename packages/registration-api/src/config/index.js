@@ -1,7 +1,14 @@
 const env = process.env;
 
 const defaults = {
-  port: 3000
+  port: 3000,
+  db: {
+    host: 'database', // server name or IP address;
+    port: 5432,
+    database: 'blog',
+    user: 'postgres',
+    password: 'postgres'
+  }
 };
 
 const getConfig = () => {
@@ -13,4 +20,4 @@ const getConfig = () => {
   return require('./config.json');
 };
 
-module.exports = getConfig;
+module.exports = getConfig();

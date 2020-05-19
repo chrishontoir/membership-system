@@ -1,7 +1,11 @@
-const register = (ctx) => {
+const postUserDetails = require('../service/post-user');
+
+const register = async (ctx) => {
+  const addUser = await postUserDetails(ctx, ctx.request.body);
+
   ctx.body = {
-    code: 'REG002',
-    message: 'Card successfully registered'
+    code: addUser.code,
+    message: addUser.message
   }
 };
 
