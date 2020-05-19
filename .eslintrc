@@ -1,0 +1,16 @@
+{
+  "plugins": ["monorepo"],
+  "extends": ["semistandard"],
+  "rules": {
+  },
+
+  "globals": {
+      "describe": true,
+      "it": true,
+      "beforeEach": true,
+      "afterEach": true,
+      "node": true,
+      "mocha": true,
+      "chai": true
+  }
+}

@@ -1,14 +1,12 @@
-const postUserDetails = require('../service/post-user');
+const postTopupDetails = require('../service/post-topup');
 
 const topup = async (ctx) => {
-  // const addUser = await postUserDetails(ctx, ctx.request.body);
+  const postTopup = await postTopupDetails(ctx, ctx.request.body);
 
-  // ctx.body = {
-  //   code: addUser.code,
-  //   message: addUser.message
-  // }
-
-  ctx.body = 'Topup'
+  ctx.body = {
+    code: postTopup.code,
+    message: postTopup.message
+  };
 };
 
 module.exports = topup;

@@ -6,7 +6,7 @@ const register = async (ctx) => {
   ctx.body = {
     code: addUser.code,
     message: addUser.message
-  }
+  };
 };
 
 module.exports = register;

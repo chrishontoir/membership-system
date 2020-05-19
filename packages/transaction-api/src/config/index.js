@@ -10,8 +10,8 @@ const defaults = {
     password: 'postgres'
   },
   tls: {
-    key: '../../../../../certificates/memstem-key.pem',
-    cert: '../../../../../certificates/memstem-cert.pem'
+    key: '../../../../certificates/memstem-key.pem',
+    cert: '../../../../certificates/memstem-cert.pem'
   }
 };
 

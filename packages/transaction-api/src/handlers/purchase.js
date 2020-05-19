@@ -1,5 +1,3 @@
-const postAuthDetails = require('../service/post-auth');
-
 const purchase = async (ctx) => {
   // const addAuth = await postAuthDetails(ctx, ctx.request.body);
 
@@ -8,7 +6,7 @@ const purchase = async (ctx) => {
   //   message: addAuth.message
   // }
 
-  ctx.body = 'Purchase'
+  ctx.body = 'Purchase';
 };
 
 module.exports = purchase;
