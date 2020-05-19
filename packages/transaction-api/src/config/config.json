@@ -1,0 +1,17 @@
+{
+	"responseTimeout": 30000,
+	"port": 3002,
+	"handlers": "handlers",
+	"environment": "development",
+	"db": {
+    "host": "database",
+    "port": 5432,
+    "database": "blog",
+    "user": "postgres",
+    "password": "postgres"
+  },
+  "tls": {
+    "key": "../../../../../certificates/memstem-key.pem",
+    "cert": "../../../../../certificates/memstem-cert.pem"
+  }
+}
