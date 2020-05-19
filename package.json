@@ -24,12 +24,15 @@
 
     "dev:registration-api": "NODE_ENV=dev lerna run --scope registration-api dev --stream",
     "dev:authentication-api": "NODE_ENV=dev lerna run --scope authentication-api dev --stream",
+    "dev:transaction-api": "NODE_ENV=dev lerna run --scope transaction-api dev --stream",
 
     "docker:registration-api": "docker-compose up --build --force-recreate registration-api",
     "docker:authentication-api": "docker-compose up --build --force-recreate authentication-api",
+    "docker:transaction-api": "docker-compose up --build --force-recreate transaction-api",
 
     "docker-dev:registration-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate registration-api",
     "docker-dev:authentication-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate authentication-api",
+    "docker-dev:transaction-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate transaction-api",
 
     "test-unit:registration-api": "NODE_ENV=test lerna run --scope registration-api test-unit --stream",
 

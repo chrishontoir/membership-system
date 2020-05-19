@@ -5,8 +5,6 @@ services:
     build:
       context: ./packages/database
       dockerfile: ./Dockerfile
-    ports:
-      - 50000:5432
     container_name: database
     environment:
       POSTGRES_USER: "postgres"
@@ -21,8 +19,6 @@ services:
       args:
         PORT: 3000
     command: "yarn start:registration-api"
-    ports: 
-      - 3000:3000
     container_name: registration-api
     depends_on:
       - database
@@ -33,9 +29,17 @@ services:
       args:
         PORT: 3001
     command: "yarn start:authentication-api"
-    ports: 
-      - 3001:3001
     container_name: authentication-api
+    depends_on:
+      - database
+  transaction-api:
+    build:
+      context: .
+      dockerfile: ./packages/transaction-api/Dockerfile
+      args:
+        PORT: 3002
+    command: "yarn start:transaction-api"
+    container_name: transaction-api
     depends_on:
       - database
 networks:

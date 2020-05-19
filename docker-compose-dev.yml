@@ -42,6 +42,21 @@ services:
       - /opt/app/node_modules/
     depends_on:
       - database
+  transaction-api:
+    build:
+      context: .
+      dockerfile: ./packages/transaction-api/Dockerfile
+      args:
+        PORT: 3002
+    command: "yarn dev:transaction-api"
+    ports: 
+      - 3002:3002
+    container_name: transaction-api
+    volumes:
+      -  .:/opt/app/
+      - /opt/app/node_modules/
+    depends_on:
+      - database
 networks:
   default:
     external:
