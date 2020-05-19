@@ -26,6 +26,18 @@ services:
     container_name: registration-api
     depends_on:
       - database
+  authentication-api:
+    build:
+      context: .
+      dockerfile: ./packages/authentication-api/Dockerfile
+      args:
+        PORT: 3001
+    command: "yarn start:authentication-api"
+    ports: 
+      - 3001:3001
+    container_name: authentication-api
+    depends_on:
+      - database
 networks:
   default:
     external:

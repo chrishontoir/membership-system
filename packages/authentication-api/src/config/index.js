@@ -1,7 +1,7 @@
 const env = process.env;
 
 const defaults = {
-  port: 3000,
+  port: 3001,
   db: {
     host: 'database', // server name or IP address;
     port: 5432,

@@ -27,6 +27,21 @@ services:
       - /opt/app/node_modules/
     depends_on:
       - database
+  authentication-api:
+    build:
+      context: .
+      dockerfile: ./packages/authentication-api/Dockerfile
+      args:
+        PORT: 3001
+    command: "yarn dev:authentication-api"
+    ports: 
+      - 3001:3001
+    container_name: authentication-api
+    volumes:
+      -  .:/opt/app/
+      - /opt/app/node_modules/
+    depends_on:
+      - database
 networks:
   default:
     external:

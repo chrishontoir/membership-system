@@ -25,7 +25,7 @@ const postUserDetails = async (ctx, request) => {
       return response;
     } else {
       const response = getResponse('REG005')
-      console.log(response)
+      console.log({ ...response, error: error.detail })
       return response;
     }
   })

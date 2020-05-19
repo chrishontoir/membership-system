@@ -4,18 +4,24 @@ const responses = {
   'REG003': 'Card already registered',
   'REG004': 'Invalid data format',
   'REG005': 'Application Error',
-  'AUTH002': 'PIN set successfully',
-  'AUTH004': 'Invalid data format',
-  'AUTH005': 'Application Error'
+  'SEC002': 'PIN set successfully',
+  'SEC003': 'Card not registered',
+  'SEC004': 'Invalid data format',
+  'SEC005': 'Application Error',
+  'AUTH002': 'Authenticated',
+  'AUTH003': 'Invalid PIN',
+  'AUTH004': 'Account Frozen'
 }
 
-const getResponse = code => {
+const getResponse = (code, logParams) => {
   const matchingResponse = responses[code];
-  return {
+  const response = {
     code,
     message: matchingResponse,
     timestamp: new Date().toISOString()
   };
+  console.log({ ...response, ...logParams });
+  return response;
 };
 
 module.exports = getResponse;
