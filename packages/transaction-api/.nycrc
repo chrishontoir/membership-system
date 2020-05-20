@@ -1,0 +1,10 @@
+{
+    "extends": "../../.nycrc",
+    "include": [
+      "src/"
+    ],
+    "exclude": [
+      "src/app/",
+      "src/config/"
+    ]
+}

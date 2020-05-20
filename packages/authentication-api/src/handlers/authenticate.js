@@ -1,6 +1,6 @@
 const checkAuthDetails = require('../service/check-auth');
 
-const authenticate = async (ctx) => {
+const authenticate = async ctx => {
   const checkAuth = await checkAuthDetails(ctx, ctx.request.body);
 
   ctx.body = {

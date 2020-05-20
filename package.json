@@ -30,24 +30,33 @@
   "scripts": {
     "generate": "sh ./certificates/generate.sh",
     "database": "docker-compose up --build --force-recreate database",
+
     "start:registration-api": "NODE_ENV=dev lerna run --scope registration-api start --stream",
     "start:authentication-api": "NODE_ENV=dev lerna run --scope authentication-api start --stream",
     "start:transactions-api": "NODE_ENV=dev lerna run --scope transactions-api start --stream",
-    "start:payment-history-api": "NODE_ENV=dev lerna run --scope payment-history-api start --stream",
+
     "dev:registration-api": "NODE_ENV=dev lerna run --scope registration-api dev --stream",
     "dev:authentication-api": "NODE_ENV=dev lerna run --scope authentication-api dev --stream",
     "dev:transaction-api": "NODE_ENV=dev lerna run --scope transaction-api dev --stream",
+
     "docker:registration-api": "docker-compose up --build --force-recreate registration-api",
     "docker:authentication-api": "docker-compose up --build --force-recreate authentication-api",
     "docker:transaction-api": "docker-compose up --build --force-recreate transaction-api",
+
     "docker-dev:registration-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate registration-api",
     "docker-dev:authentication-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate authentication-api",
     "docker-dev:transaction-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate transaction-api",
+
     "test-unit": "NODE_ENV=test lerna run test-unit --stream",
     "test-unit:registration-api": "NODE_ENV=test lerna run --scope registration-api test-unit --stream",
+    "test-unit:authentication-api": "NODE_ENV=test lerna run --scope authentication-api test-unit --stream",
     "test-unit:common": "NODE_ENV=test lerna run --scope common test-unit --stream",
+
     "test-integration:registration-api": "",
+
     "test-coverage:registration-api": "NODE_ENV=test lerna run --scope registration-api test-coverage --stream ; open packages/registration-api/reports/test/unit/coverage/lcov-report/index.html",
+    "test-coverage:authentication-api": "NODE_ENV=test lerna run --scope authentication-api test-coverage --stream ; open packages/authentication-api/reports/test/unit/coverage/lcov-report/index.html",
+
     "lint": "eslint packages/**/*.js",
     "lint:fix": "yarn run lint --fix"
   }
