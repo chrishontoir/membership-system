@@ -1,0 +1,143 @@
+openapi: 3.0.1
+info:
+  title: Registration Api 
+  description: Definition of registration-api
+  version: 1.0.0
+servers:
+  - url: https://localhost:3000
+    description: Local server for Registration API
+tags:
+  - name: Register
+    description: Endpoint to register a new user
+  - name: Secure
+    description: Endpoint to set an initial PIN
+paths:
+  /register:
+    post:
+      tags:
+        - Register
+      summary: Register a new user
+      operationId: register
+      requestBody:
+        description: Register a new user based on the inputs given
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerSuccess'
+        500:
+          description: Application Error
+  /secure:
+    post:
+      tags:
+        - Secure
+      summary: Secure the account of a new user
+      operationId: secure
+      requestBody:
+        description: Secure the account of a new user based on the inputs given
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/secureRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/secureSuccess'
+        500:
+          description: Application Error
+components:
+  schemas:
+    registerRequest:
+      type: object
+      properties:
+        cardId:
+          $ref: '#/components/schemas/cardId'
+        employeeId:
+          $ref: '#/components/schemas/employeeId'
+        firstName:
+          $ref: '#/components/schemas/firstName'
+        lastName:
+          $ref: '#/components/schemas/lastName'
+        email:
+          $ref: '#/components/schemas/email'
+        mobileNo:
+          $ref: '#/components/schemas/mobileNo'
+    registerSuccess:
+      type: object
+      properties:
+        code: 
+          $ref: '#/components/schemas/registerCode'
+        message: 
+          $ref: '#/components/schemas/registerMessage'
+    secureRequest:
+      type: object
+      properties:
+        cardId:
+          $ref: '#/components/schemas/cardId'
+        pin:
+          $ref: '#/components/schemas/pin'
+    secureSuccess:
+      type: object
+      properties:
+        code: 
+          $ref: '#/components/schemas/secureCode'
+        message: 
+          $ref: '#/components/schemas/secureMessage'
+    cardId:
+      type: string
+      description: 16 digit alphaNumeric unique id
+      example: 'abc123abc123abc1'
+    employeeId:
+      type: string
+      description: 10 digit alphaNumeric unique id
+      example: '0123456abcd'
+    firstName:
+      type: string
+      description: first name of user
+      example: 'Jim'
+    lastName:
+      type: string
+      description: last name of user
+      example: 'Brown'
+    email:
+      type: string
+      format: email
+      description: email address of user
+      example: 'jbrown@testemail.com'
+    mobileNo:
+      type: string
+      description: 11 digit phone number of user
+      example: '01234567890'
+    pin:
+      type: number
+      description: 4 digit pin to secure the account with
+      example: 1234
+    registerCode:
+      type: string
+      description: code linked to the response type
+      example: 'REG002'
+    registerMessage:
+      type: string
+      description: message linked to the response type
+      example: 'Card registered successfully'
+    secureCode:
+      type: string
+      description: code linked to the response type
+      example: 'SEC002'
+    secureMessage:
+      type: string
+      description: message linked to the response type
+      example: 'PIN set successfully'
+    
+      

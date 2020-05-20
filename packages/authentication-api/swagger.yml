@@ -1,0 +1,74 @@
+openapi: 3.0.1
+info:
+  title: Authentication Api 
+  description: Definition of authentication-api
+  version: 1.0.0
+servers:
+  - url: https://localhost:3001
+    description: Local server for Authentication API
+tags:
+  - name: Authenticate
+    description: Endpoint to authenticate an existing user
+paths:
+  /authenticate:
+    post:
+      tags:
+        - Authenticate
+      summary: Authenticate an existing user
+      operationId: authenticate
+      requestBody:
+        description: Authenticate an existing user based on the inputs given
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/authenticateRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authenticateSuccess'
+        500:
+          description: Application Error
+components:
+  schemas:
+    authenticateRequest:
+      type: object
+      properties:
+        cardId:
+          $ref: '#/components/schemas/cardId'
+        pin:
+          $ref: '#/components/schemas/pin'
+    authenticateSuccess:
+      type: object
+      properties:
+        code: 
+          $ref: '#/components/schemas/authenticateCode'
+        message: 
+          $ref: '#/components/schemas/authenticateMessage'
+        token:
+          $ref: '#/components/schemas/authenticateToken'
+    cardId:
+      type: string
+      description: 16 digit alphaNumeric unique id
+      example: 'abc123abc123abc1'
+    pin:
+      type: number
+      description: 4 digit pin to secure the account with
+      example: 1234
+    authenticateCode:
+      type: string
+      description: code linked to the response type
+      example: 'AUTH002'
+    authenticateMessage:
+      type: string
+      description: message linked to the response type
+      example: 'Authenticated'
+    authenticateToken:
+      type: string
+      description: token linked to account and session to authorise further requests
+      example: 'abcde.fghij.klmno'
+    
+      

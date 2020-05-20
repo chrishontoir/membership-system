@@ -23,7 +23,7 @@ const responses = {
   TRAN013: 'Card not registered',
   TRAN014: 'Not enough funds',
   TRAN015: 'Application Error',
-  TRAN022: 'Account History retrieved',
+  TRAN022: 'Transaction history retrieved',
   TRAN025: 'Application Error'
 };
 
