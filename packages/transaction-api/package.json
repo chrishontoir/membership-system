@@ -7,13 +7,15 @@
   "scripts": {
     "start": "node src/app/server.js",
     "dev": "nodemon --watch ../../**/**.js src/app/server.js",
-    "test-unit": "mocha --colors --exit --timeout 20000 './test/unit/**/*.spec.js'"
+    "test-unit": "mocha --colors --exit --timeout 20000 './test/unit/**/*.spec.js'",
+    "api-edit": "openapi-editor --file ./swagger.yml --port 4002"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
     "koa": "^2.12.0",
     "koa-bodyparser": "^4.3.0",
-    "koa-router": "^8.0.8"
+    "koa-router": "^8.0.8",
+    "openapi-editor": "^0.2.0"
   },
   "devDependencies": {
     "mocha": "^7.1.2",

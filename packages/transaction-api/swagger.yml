@@ -1,0 +1,224 @@
+openapi: 3.0.1
+info:
+  title: Transaction Api 
+  description: Definition of transaction-api
+  version: 1.0.0
+servers:
+  - url: https://localhost:3002
+    description: Local server for Transaction API
+tags:
+  - name: Topup
+    description: Endpoint to topup an account
+  - name: Purchase
+    description: Endpoint to make a purchase from an account
+  - name: History
+    description: Endpoint to see transaction history of an account
+paths:
+  /topup:
+    post:
+      tags:
+        - Topup
+      summary: Topup an account
+      operationId: topup
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Topup an account based on the inputs given
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/topupRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topupSuccess'
+        500:
+          description: Application Error
+  /purchase:
+    post:
+      tags:
+        - Purchase
+      summary: Make a purchase from an account
+      operationId: purchase
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Make a purchase from an account based on the inputs given
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/purchaseRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/purchaseSuccess'
+        500:
+          description: Application Error
+  /history:
+    post:
+      tags:
+        - History
+      summary: View transaction history of an account
+      operationId: history
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: View transaction history of an account based on the inputs given
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/historyRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/historySuccess'
+        500:
+          description: Application Error
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    topupRequest:
+      type: object
+      properties:
+        cardId:
+          $ref: '#/components/schemas/cardId'
+        description:
+          $ref: '#/components/schemas/description'
+        amount:
+          $ref: '#/components/schemas/amount'
+    topupSuccess:
+      type: object
+      properties:
+        code: 
+          $ref: '#/components/schemas/topupCode'
+        message: 
+          $ref: '#/components/schemas/topupMessage'
+        balance:
+          $ref: '#/components/schemas/topupBalance'
+    purchaseRequest:
+      type: object
+      properties:
+        cardId:
+          $ref: '#/components/schemas/cardId'
+        description:
+          $ref: '#/components/schemas/description'
+        amount:
+          $ref: '#/components/schemas/amount'
+    purchaseSuccess:
+      type: object
+      properties:
+        code: 
+          $ref: '#/components/schemas/purchaseCode'
+        message: 
+          $ref: '#/components/schemas/purchaseMessage'
+        balance:
+          $ref: '#/components/schemas/purchaseBalance'
+    historyRequest:
+      type: object
+      properties:
+        cardId:
+          $ref: '#/components/schemas/cardId'
+    historySuccess:
+      type: object
+      properties:
+        code: 
+          $ref: '#/components/schemas/historyCode'
+        message: 
+          $ref: '#/components/schemas/historyMessage'
+        history:
+          $ref: '#/components/schemas/history'
+    cardId:
+      type: string
+      description: 16 digit alphaNumeric unique id
+      example: 'abc123abc123abc1'
+    description:
+      type: string
+      description: description of the transaction
+      example: 'Topup'
+    amount:
+      type: number
+      description: amount of the transaction to 2 decimal places
+      example: 5.23
+    topupCode:
+      type: string
+      description: code linked to the response type
+      example: 'TRAN002'
+    topupMessage:
+      type: string
+      description: message linked to the response type
+      example: 'Successful Topup'
+    topupBalance:
+      type: number
+      description: balance of the account to 2 decimal places
+      example: 123.12
+    purchaseCode:
+      type: string
+      description: code linked to the response type
+      example: 'TRAN012'
+    purchaseMessage:
+      type: string
+      description: message linked to the response type
+      example: 'Successful Purchase'
+    purchaseBalance:
+      type: number
+      description: balance of the account to 2 decimal places
+      example: 123.12
+    historyCode:
+      type: string
+      description: code linked to the response type
+      example: 'TRAN022'
+    historyMessage:
+      type: string
+      description: message linked to the response type
+      example: 'Transaction history retrieved'
+    history:
+      type: array
+      items:
+        $ref: '#/components/schemas/transaction'
+    transaction:
+      type: object
+      properties:
+        id: 
+          $ref: '#/components/schemas/transactionId'
+        description: 
+          $ref: '#/components/schemas/transactionDescription'
+        date:
+          $ref: '#/components/schemas/transactionDate'
+        amount:
+          $ref: '#/components/schemas/transactionAmount'
+    transactionId:
+      type: number
+      description: unique id of the transaction
+      example: 01
+    transactionDescription:
+      type: string
+      description: description of the transaction
+      example: 'TOPUP'
+    transactionDate:
+      type: string
+      format: date
+      description: date of the transaction
+      example: 'Mon 20 Jul 2020'
+    transactionAmount:
+      type: number
+      description: amount of the transaction to 2 decimal places
+      example: 12.34
+        
+    
+      
