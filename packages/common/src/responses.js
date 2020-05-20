@@ -16,7 +16,13 @@ const responses = {
   AUTH004: 'Account Frozen',
   AUTH005: 'Application Error',
   AUTH006: 'Card has not been secured with a PIN',
-  TRAN002: 'Successful Topup'
+  TRAN002: 'Successful Topup',
+  TRAN003: 'Card not registered',
+  TRAN005: 'Application Error',
+  TRAN012: 'Successful Purchase',
+  TRAN013: 'Card not registered',
+  TRAN014: 'Not enough funds',
+  TRAN015: 'Application Error'
 };
 
 const getResponse = (code, outputParams) => {

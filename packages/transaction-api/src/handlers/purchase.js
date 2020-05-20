@@ -1,12 +1,16 @@
+const postPurchaseDetails = require('../service/post-purchase');
+
 const purchase = async (ctx) => {
-  // const addAuth = await postAuthDetails(ctx, ctx.request.body);
+  const postPurchase = await postPurchaseDetails(ctx, ctx.request.body);
 
-  // ctx.body = {
-  //   code: addAuth.code,
-  //   message: addAuth.message
-  // }
+  ctx.body = {
+    code: postPurchase.code,
+    message: postPurchase.message
+  };
 
-  ctx.body = 'Purchase';
+  if (postPurchase.balance) {
+    ctx.body = { ...ctx.body, balance: postPurchase.balance };
+  }
 };
 
 module.exports = purchase;
