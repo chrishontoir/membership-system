@@ -22,7 +22,9 @@ const responses = {
   TRAN012: 'Successful Purchase',
   TRAN013: 'Card not registered',
   TRAN014: 'Not enough funds',
-  TRAN015: 'Application Error'
+  TRAN015: 'Application Error',
+  TRAN022: 'Account History retrieved',
+  TRAN025: 'Application Error'
 };
 
 const getResponse = (code, outputParams) => {

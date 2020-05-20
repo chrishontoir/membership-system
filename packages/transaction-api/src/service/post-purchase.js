@@ -12,7 +12,7 @@ const postPurchase = async (ctx, request) => {
       } else {
         amount = parseFloat(account[0].balance) - amount;
         await ctx.db.query('UPDATE T003ACCOUNT_BALANCE SET BALANCE = $2 WHERE CARD_ID = $1;', [cardId, amount]);
-        await ctx.db.query('INSERT INTO T004ACCOUNT_HISTORY (CARD_ID, DESCRIPTION, AMOUNT, DATE) VALUES ($1, $2, $3, $4);', [cardId, description, amount, date]);
+        await ctx.db.query('INSERT INTO T004ACCOUNT_HISTORY (CARD_ID, DESCRIPTION, AMOUNT, DATE) VALUES ($1, $2, $3, $4);', [cardId, description, request.amount, date]);
       }
       const response = getResponse('TRAN012');
       response.balance = parseFloat(amount).toFixed(2);
