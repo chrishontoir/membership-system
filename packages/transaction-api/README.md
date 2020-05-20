@@ -9,6 +9,11 @@ Make sure that you're in the root directory of the monorepo.
   yarn
   ```
 
+- Install certificates if you haven't already.
+  ```
+  yarn generate
+  ```
+
 - Start the service locally.
   ```
   yarn start:transaction-api

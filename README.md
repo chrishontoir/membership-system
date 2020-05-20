@@ -28,8 +28,13 @@ Install all packages using `yarn`. `Yarn` is used over `npm` to make use of `yar
 ```
 yarn
 ```
-Start up the microservices. Each of these commands also starts up the `database` service if it isn't already running.
 
+Generate certificates
+```
+yarn generate
+```
+
+Start up the microservices. Each of these commands also starts up the `database` service if it isn't already running.
 ```
 yarn docker-dev:registration-api
 yarn docker-dev:authentication-api
