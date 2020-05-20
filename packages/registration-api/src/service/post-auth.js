@@ -13,9 +13,7 @@ const postAuthDetails = async (ctx, request) => {
     UPDATE SET PIN = $2, STATUS = $3, ATTEMPTS = $4;
   `, [cardId, encryptedPIN, 'ACTIVE', 0])
     .then(userAuth => {
-      const response = getResponse('SEC002');
-      console.log(response);
-      return response;
+      return getResponse('SEC002');
     })
     .catch(error => {
       if (error.code === '23503') {

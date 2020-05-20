@@ -1,5 +1,8 @@
 const responses = {
   API001: 'API Elapsed Time',
+  API002: 'Unauthorized',
+  API003: 'Forbidden',
+  API004: 'Session Expired',
   REG002: 'Card registered successfully',
   REG003: 'Card already registered',
   REG004: 'Invalid data format',
@@ -11,17 +14,19 @@ const responses = {
   AUTH002: 'Authenticated',
   AUTH003: 'Invalid PIN',
   AUTH004: 'Account Frozen',
+  AUTH005: 'Application Error',
+  AUTH006: 'Card has not been secured with a PIN',
   TRAN002: 'Successful Topup'
 };
 
-const getResponse = (code, logParams, outputParams) => {
+const getResponse = (code, outputParams) => {
   const matchingResponse = responses[code];
   const response = {
     code,
     message: matchingResponse,
     timestamp: new Date().toISOString()
   };
-  console.log({ ...response, ...logParams });
+  console.log({ ...response, ...outputParams });
   return { ...response, ...outputParams };
 };
 

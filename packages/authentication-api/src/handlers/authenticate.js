@@ -6,10 +6,10 @@ const authenticate = async (ctx) => {
   ctx.body = {
     code: checkAuth.code,
     message: checkAuth.message
-  }
+  };
 
   if (checkAuth.token) {
-    ctx.body = { ...ctx.body, token: checkAuth.token }
+    ctx.body = { ...ctx.body, token: checkAuth.token };
   }
 };
 

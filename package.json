@@ -7,11 +7,21 @@
   "repository": "git@github.com:chrishontoir/membership-system.git",
   "author": "chrishontoir <chrishontoir@live.co.uk>",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "eslint": "^7.0.0",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-semistandard": "^15.0.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-json": "^2.1.1",
+    "eslint-plugin-mocha": "^6.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-monorepo": "0.2.1",
     "lerna": "^3.21.0",
-    "prettier": "^2.0.5",
-    "semistandard": "^14.2.0"
+    "prettier": "^2.0.5"
   },
   "useWorkspaces": true,
   "workspaces": [
@@ -35,7 +45,7 @@
     "test-unit:registration-api": "NODE_ENV=test lerna run --scope registration-api test-unit --stream",
     "test-integration:registration-api": "",
     "test-coverage:registration-api": "",
-    "lint": "eslint packages/**/**.js",
+    "lint": "eslint packages/**/*.js",
     "lint:fix": "yarn run lint --fix"
   }
 }

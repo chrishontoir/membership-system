@@ -12,7 +12,7 @@ const apiElapsedTime = async (ctx, next) => {
       message: 'API Elapsed Time',
       start: start.toISOString(),
       end: end.toISOString(),
-      elapsed: `${elapsed}ms`,
+      elapsed: `${elapsed}ms`
     });
   };
 
