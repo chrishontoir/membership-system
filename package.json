@@ -28,6 +28,7 @@
     "packages/*"
   ],
   "scripts": {
+    "generate": "sh ./certificates/generate.sh",
     "database": "docker-compose up --build --force-recreate database",
     "start:registration-api": "NODE_ENV=dev lerna run --scope registration-api start --stream",
     "start:authentication-api": "NODE_ENV=dev lerna run --scope authentication-api start --stream",
@@ -42,9 +43,11 @@
     "docker-dev:registration-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate registration-api",
     "docker-dev:authentication-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate authentication-api",
     "docker-dev:transaction-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate transaction-api",
+    "test-unit": "NODE_ENV=test lerna run test-unit --stream",
     "test-unit:registration-api": "NODE_ENV=test lerna run --scope registration-api test-unit --stream",
+    "test-unit:common": "NODE_ENV=test lerna run --scope common test-unit --stream",
     "test-integration:registration-api": "",
-    "test-coverage:registration-api": "",
+    "test-coverage:registration-api": "NODE_ENV=test lerna run --scope registration-api test-coverage --stream ; open packages/registration-api/reports/test/unit/coverage/lcov-report/index.html",
     "lint": "eslint packages/**/*.js",
     "lint:fix": "yarn run lint --fix"
   }

@@ -1,6 +1,6 @@
 const postUserDetails = require('../service/post-user');
 
-const register = async (ctx) => {
+const register = async ctx => {
   const addUser = await postUserDetails(ctx, ctx.request.body);
 
   ctx.body = {

@@ -1,6 +1,6 @@
 const postAuthDetails = require('../service/post-auth');
 
-const register = async (ctx) => {
+const register = async ctx => {
   const addAuth = await postAuthDetails(ctx, ctx.request.body);
 
   ctx.body = {
