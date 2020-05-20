@@ -50,3 +50,42 @@ Make sure that you're in the root directory of the monorepo.
   ```
   yarn test-coverage:registration-api
   ```
+
+---
+---
+
+## Requests
+
+### 1. Register
+Register a new user
+
+- URL
+  ```
+  POST https://localhost:3000/register
+  ```
+- Body (JSON)
+  ```
+  {
+    "cardId": "1234567890123456",
+    "employeeId": "0123456789",
+    "firstName": "Jim",
+    "lastName": "Brown",
+    "email": "jbrown@testemail.com",
+    "mobileNo": "01234567890"
+  }
+  ```
+---
+### 2. Secure
+Set a PIN for the user
+
+- URL
+  ```
+  POST https://localhost:3000/secure
+  ```
+- Body (JSON)
+  ```
+  {
+    "cardId": "1234567890123456",
+    "pin": 1234
+  }
+  ```

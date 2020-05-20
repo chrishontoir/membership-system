@@ -50,3 +50,23 @@ Make sure that you're in the root directory of the monorepo.
   ```
   yarn test-coverage:authentication-api
   ```
+
+---
+---
+
+## Requests
+
+### 1. Authenticate
+Authenticate the PIN provided
+
+- URL
+  ```
+  POST https://localhost:3001/authenticate
+  ```
+- Body (JSON)
+  ```
+  {
+    "cardId": "1234567890123456",
+    "pin": 1234
+  }
+  ```

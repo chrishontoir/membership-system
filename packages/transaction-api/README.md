@@ -50,3 +50,79 @@ Make sure that you're in the root directory of the monorepo.
   ```
   yarn test-coverage:transaction-api
   ```
+
+---
+---
+
+## Requests
+
+### 1. Topup
+Add funds to an account
+
+- URL
+  ```
+  POST https://localhost:3002/topup
+  ```
+- Header - `Authorization: Bearer JWT`
+  ```
+  {
+    "cardId": Must match cardId in the request body,
+    "timestamp": Must be within the last 10 minutes
+  }
+  ```
+- Body (JSON)
+  ```
+  {
+    "cardId": "1234567890123456",
+    "description": "Topup",
+    "amount": 10
+  }
+  ```
+
+---
+
+### 2. Purchase
+Remove funds from an account and add to payment history
+
+- URL
+  ```
+  POST https://localhost:3002/purchase
+  ```
+- Header - `Authorization: Bearer JWT`
+  ```
+  {
+    "cardId": Must match cardId in the request body,
+    "timestamp": Must be within the last 10 minutes
+  }
+  ```
+- Body (JSON)
+  ```
+  {
+    "cardId": "1234567890123456",
+    "description": "Purchase",
+    "amount": 5
+  }
+  ```
+
+---
+
+### 3. History
+Retrieve history of all transactions on an account
+
+- URL
+  ```
+  POST https://localhost:3002/history
+  ```
+- Header - `Authorization: Bearer JWT`
+  ```
+  {
+    "cardId": Must match cardId in the request body,
+    "timestamp": Must be within the last 10 minutes
+  }
+  ```
+- Body (JSON)
+  ```
+  {
+    "cardId": "1234567890123456"
+  }
+  ```
