@@ -29,6 +29,7 @@ const responses = {
 };
 
 const getResponse = (code, outputParams) => {
+  console.log('QUESTION', code)
   const matchingResponse = responses[code];
   const response = {
     code,

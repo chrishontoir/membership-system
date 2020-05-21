@@ -10,8 +10,10 @@ const postTopup = async (ctx, request) => {
       SELECT * FROM T003ACCOUNT_BALANCE WHERE CARD_ID = $1;
     `, [cardId]);
 
+    let balance = parseFloat(amount);
+
     if (data.length > 0) {
-      const balance = parseFloat(data[0].balance) + amount;
+      balance = parseFloat(data[0].balance) + amount;
       await ctx.db.query(`
         UPDATE T003ACCOUNT_BALANCE SET BALANCE = $2 WHERE CARD_ID = $1;
       `, [cardId, balance]);
@@ -25,7 +27,7 @@ const postTopup = async (ctx, request) => {
     `, [cardId, description, amount, date]);
 
     const response = getResponse('TRAN002');
-    response.balance = parseFloat(amount).toFixed(2);
+    response.balance = parseFloat(balance).toFixed(2);
     return response;
   } catch (error) {
     if (error.code === '23503') {
