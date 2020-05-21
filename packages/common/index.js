@@ -1,13 +1,13 @@
-const authorize = require('./src/authorize');
-const setupDb = require('./src/setup-db');
 const apiElapsedTime = require('./src/elapsed-time');
+const authorize = require('./src/authorize');
 const generateJWT = require('./src/generate-jwt');
-const getResponse = require('./src/responses');
+const getResponse = require('./src/get-response');
+const setupDb = require('./src/setup-db');
 
 module.exports = {
-  authorize,
-  setupDb,
   apiElapsedTime,
+  authorize,
   generateJWT,
-  getResponse
+  getResponse,
+  setupDb
 };

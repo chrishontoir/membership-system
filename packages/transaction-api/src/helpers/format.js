@@ -2,8 +2,8 @@ const format = response => {
   const formatted = response.map(item => {
     return {
       id: item.purchase_id,
-      decription: item.description.toUpperCase().trim(),
-      date: item.date.toDateString(),
+      description: item.description.toUpperCase().trim(),
+      date: new Date(item.date).toDateString(),
       amount: item.amount
     };
   });

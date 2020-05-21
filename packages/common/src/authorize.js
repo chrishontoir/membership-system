@@ -1,4 +1,4 @@
-const getResponse = require('./responses');
+const getResponse = require('./get-response');
 
 const authorize = async (ctx, next) => {
   if (!ctx.request.headers.authorization) {
