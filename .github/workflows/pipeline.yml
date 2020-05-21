@@ -19,6 +19,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn
-    - run: NODE_ENV=test lerna run --scope authentication-api test-coverage --stream
-    - run: NODE_ENV=test lerna run --scope registration-api test-coverage --stream
-    - run: NODE_ENV=test lerna run --scope transaction-api test-coverage --stream
+    - run: yarn test-coverage:authentication-api
+    - run: yarn test-coverage:registration-api
+    - run: yarn test-coverage:transaction-api

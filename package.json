@@ -42,9 +42,13 @@
 
     "test-integration:registration-api": "",
 
-    "test-coverage:authentication-api": "NODE_ENV=test lerna run --scope authentication-api test-coverage --stream ; open packages/authentication-api/reports/test/unit/coverage/lcov-report/index.html",
-    "test-coverage:registration-api": "NODE_ENV=test lerna run --scope registration-api test-coverage --stream ; open packages/registration-api/reports/test/unit/coverage/lcov-report/index.html",
-    "test-coverage:transaction-api": "NODE_ENV=test lerna run --scope transaction-api test-coverage --stream ; open packages/transaction-api/reports/test/unit/coverage/lcov-report/index.html",
+    "test-coverage:authentication-api": "NODE_ENV=test lerna run --scope authentication-api test-coverage --stream",
+    "test-coverage:registration-api": "NODE_ENV=test lerna run --scope registration-api test-coverage --stream",
+    "test-coverage:transaction-api": "NODE_ENV=test lerna run --scope transaction-api test-coverage --stream",
+
+    "coverage-report:authentication-api": "open packages/authentication-api/reports/test/unit/coverage/lcov-report/index.html",
+    "coverage-report:registration-api": "open packages/registration-api/reports/test/unit/coverage/lcov-report/index.html",
+    "coverage-report:transaction-api": "open packages/transaction-api/reports/test/unit/coverage/lcov-report/index.html",
 
     "lint": "eslint packages/**/*.js",
     "lint:fix": "yarn run lint --fix"
