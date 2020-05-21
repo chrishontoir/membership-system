@@ -19,6 +19,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn
-    - run: yarn test-unit:authentication-api
-    - run: yarn test-unit:registration-api
-    - run: yarn test-unit:transaction-api
+    - run: yarn test-coverage:authentication-api
+    - run: yarn test-coverage:registration-api
+    - run: yarn test-coverage:transaction-api
