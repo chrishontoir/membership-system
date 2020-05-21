@@ -33,7 +33,7 @@ describe('authentication-api / handlers / authenticate', () => {
       await this.sut(ctx);
     });
 
-    it.only('and set the response in the ctx.body', () => {
+    it('and set the response in the ctx.body', () => {
       assert.deepStrictEqual(ctx.body.code, 'AUTH002');
       assert.deepStrictEqual(ctx.body.message, 'Authenticated');
       assert.deepStrictEqual(ctx.body.token, 'abcde.fghij.lmnop');
@@ -46,7 +46,7 @@ describe('authentication-api / handlers / authenticate', () => {
       await this.sut(ctx);
     });
 
-    it.only('and set the response in the ctx.body', () => {
+    it('and set the response in the ctx.body', () => {
       assert.deepStrictEqual(ctx.body.code, 'AUTH003');
       assert.deepStrictEqual(ctx.body.message, 'Invalid PIN');
       assert.deepStrictEqual(ctx.body.token, undefined);

@@ -1,4 +1,4 @@
-const getResponse = require('../../../common/src/responses');
+const { getResponse } = require('../../../common');
 const encrypt = require('../helpers/encrypt');
 
 const postAuthDetails = async (ctx, request) => {
@@ -7,14 +7,14 @@ const postAuthDetails = async (ctx, request) => {
   const encryptedPIN = await encrypt(pin.toString());
 
   try {
-    const response = await ctx.db.query(`
+    const data = await ctx.db.query(`
       INSERT INTO T002USER_AUTH (CARD_ID, PIN, STATUS, ATTEMPTS) 
       VALUES ($1, $2, $3, $4) 
       ON CONFLICT (CARD_ID) DO 
       UPDATE SET PIN = $2, STATUS = $3, ATTEMPTS = $4;
-  `, [cardId, encryptedPIN, 'ACTIVE', 0]);
+    `, [cardId, encryptedPIN, 'ACTIVE', 0]);
 
-    if (response) {
+    if (data) {
       return getResponse('SEC002');
     } else {
       return getResponse('SEC005');

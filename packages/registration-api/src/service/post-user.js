@@ -1,15 +1,15 @@
-const getResponse = require('../../../common/src/responses');
+const { getResponse } = require('../../../common');
 
 const postUserDetails = async (ctx, request) => {
   const { cardId, employeeId, firstName, lastName, email, mobileNo } = request;
 
   try {
-    const response = await ctx.db.query(`
+    const data = await ctx.db.query(`
       INSERT INTO T001USER_DETAILS (CARD_ID, EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, MOBILE_NO, DATE_OF_REG) 
       VALUES ($1, $2, $3, $4, $5, $6, $7);
     `, [cardId, employeeId, firstName, lastName, email, mobileNo, '2020-01-01']);
 
-    if (response) {
+    if (data) {
       return getResponse('REG002');
     } else {
       return getResponse('REG005');

@@ -24,6 +24,7 @@ const responses = {
   TRAN014: 'Not enough funds',
   TRAN015: 'Application Error',
   TRAN022: 'Transaction history retrieved',
+  TRAN023: 'No transactions found',
   TRAN025: 'Application Error'
 };
 

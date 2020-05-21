@@ -17,11 +17,13 @@ describe('registration-api / service / post-auth', () => {
       pin: 1234
     };
 
+    this.common = {
+      getResponse: td.function()
+    };
+    td.replace('../../../../../common/', this.common);
+
     this.encrypt = td.function();
     td.replace('../../../../src/helpers/encrypt', this.encrypt);
-
-    this.getResponse = td.function();
-    td.replace('../../../../../common/src/responses', this.getResponse);
 
     this.sut = require('../../../../src/service/post-auth');
   });
@@ -31,7 +33,7 @@ describe('registration-api / service / post-auth', () => {
     beforeEach(() => {
       td.when(this.encrypt('1234')).thenReturn('a6sjw7shajsiwksjwhsj');
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReturn([]);
-      td.when(this.getResponse('SEC002')).thenReturn({ code: 'SEC002', message: 'PIN set successfully' });
+      td.when(this.common.getResponse('SEC002')).thenReturn({ code: 'SEC002', message: 'PIN set successfully' });
     });
 
     it('should save the details to the database', async () => {
@@ -45,7 +47,7 @@ describe('registration-api / service / post-auth', () => {
     beforeEach(() => {
       td.when(this.encrypt('1234')).thenReturn('a6sjw7shajsiwksjwhsj');
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReject({ code: '23503' });
-      td.when(this.getResponse('SEC003')).thenReturn({ code: 'SEC003', message: 'Card not registered' });
+      td.when(this.common.getResponse('SEC003')).thenReturn({ code: 'SEC003', message: 'Card not registered' });
     });
 
     it('should respond with a SEC003 message', async () => {
@@ -59,7 +61,7 @@ describe('registration-api / service / post-auth', () => {
     beforeEach(() => {
       td.when(this.encrypt('1234')).thenReturn('a6sjw7shajsiwksjwhsj');
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReject({ code: '22001' });
-      td.when(this.getResponse('SEC004')).thenReturn({ code: 'SEC004', message: 'Invalid data format' });
+      td.when(this.common.getResponse('SEC004')).thenReturn({ code: 'SEC004', message: 'Invalid data format' });
     });
 
     it('should respond with a SEC004 message', async () => {
@@ -73,7 +75,7 @@ describe('registration-api / service / post-auth', () => {
     beforeEach(() => {
       td.when(this.encrypt('1234')).thenReturn('a6sjw7shajsiwksjwhsj');
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReject({ code: '28561' });
-      td.when(this.getResponse('SEC005')).thenReturn({ code: 'SEC005', message: 'Application Error' });
+      td.when(this.common.getResponse('SEC005')).thenReturn({ code: 'SEC005', message: 'Application Error' });
     });
 
     it('should respond with a SEC005 message', async () => {
@@ -87,7 +89,7 @@ describe('registration-api / service / post-auth', () => {
     beforeEach(() => {
       td.when(this.encrypt('1234')).thenReturn('a6sjw7shajsiwksjwhsj');
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReturn(undefined);
-      td.when(this.getResponse('SEC005')).thenReturn({ code: 'SEC005', message: 'Application Error' });
+      td.when(this.common.getResponse('SEC005')).thenReturn({ code: 'SEC005', message: 'Application Error' });
     });
 
     it('should respond with a SEC005 message', async () => {

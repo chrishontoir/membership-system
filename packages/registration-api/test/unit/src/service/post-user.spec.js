@@ -21,16 +21,19 @@ describe('registration-api / service / post-user', () => {
       mobileNo: '01234567890'
     };
 
-    this.getResponse = td.function();
-    td.replace('../../../../../common/src/responses', this.getResponse);
+    this.common = {
+      getResponse: td.function()
+    };
+    td.replace('../../../../../common/', this.common);
+
     this.sut = require('../../../../src/service/post-user');
   });
   afterEach(td.reset);
 
   describe('when given valid details of an unregistered card', () => {
     beforeEach(() => {
-      td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReturn('VALID_RESPONSE');
-      td.when(this.getResponse('REG002')).thenReturn({ code: 'REG002', message: 'Card registered successfully' });
+      td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReturn([]);
+      td.when(this.common.getResponse('REG002')).thenReturn({ code: 'REG002', message: 'Card registered successfully' });
     });
 
     it('should save the details to the database', async () => {
@@ -43,7 +46,7 @@ describe('registration-api / service / post-user', () => {
   describe('when given valid details of a registered card', () => {
     beforeEach(() => {
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReject({ code: '23505' });
-      td.when(this.getResponse('REG003')).thenReturn({ code: 'REG003', message: 'Card already registered' });
+      td.when(this.common.getResponse('REG003')).thenReturn({ code: 'REG003', message: 'Card already registered' });
     });
 
     it('should respond with a REG003 message', async () => {
@@ -56,7 +59,7 @@ describe('registration-api / service / post-user', () => {
   describe('when given invalid details', () => {
     beforeEach(() => {
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReject({ code: '22001' });
-      td.when(this.getResponse('REG004')).thenReturn({ code: 'REG004', message: 'Invalid data format' });
+      td.when(this.common.getResponse('REG004')).thenReturn({ code: 'REG004', message: 'Invalid data format' });
     });
 
     it('should respond with a REG004 message', async () => {
@@ -69,7 +72,7 @@ describe('registration-api / service / post-user', () => {
   describe('when any other error occurs', () => {
     beforeEach(() => {
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReject({ code: '28561' });
-      td.when(this.getResponse('REG005')).thenReturn({ code: 'REG005', message: 'Application Error' });
+      td.when(this.common.getResponse('REG005')).thenReturn({ code: 'REG005', message: 'Application Error' });
     });
 
     it('should respond with a REG005 message', async () => {
@@ -82,7 +85,7 @@ describe('registration-api / service / post-user', () => {
   describe('when the database doesnt respond with an empty array but no error is thrown', () => {
     beforeEach(() => {
       td.when(this.ctx.db.query(td.matchers.isA(String), td.matchers.isA(Array))).thenReturn(undefined);
-      td.when(this.getResponse('REG005')).thenReturn({ code: 'REG005', message: 'Application Error' });
+      td.when(this.common.getResponse('REG005')).thenReturn({ code: 'REG005', message: 'Application Error' });
     });
 
     it('should respond with a REG005 message', async () => {
