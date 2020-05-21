@@ -337,7 +337,7 @@ describe('TRANSACTION /PURCHASE', () => {
   });
 
   describe('with a valid PIN and a valid JWT and not enough funds', () => {
-    it('should return a TRAN014 - Successful Topup response', async () =>
+    it('should return a TRAN014 - Not enough funds response', async () =>
       await this.request
         .post('/purchase')
         .set('Authorization', `Bearer ${token}`)
@@ -384,6 +384,63 @@ describe('TRANSACTION /PURCHASE', () => {
           cardId: cardIdOne,
           descrition: 'Purchase',
           amount: 6.00
+        })
+        .expect(200)
+        .then(response => {
+          assert.deepStrictEqual(response.body.code, 'API002');
+          assert.deepStrictEqual(response.body.message, 'Unauthorized');
+        })
+    );
+  });
+});
+
+describe('TRANSACTION /HISTORY', () => {
+  beforeEach(() => {
+    this.request = require('supertest')('https://localhost:3002');
+  });
+
+  describe('with a valid PIN and a valid JWT and the account has a history', () => {
+    it('should return a TRAN022 - Transaction history retrieved response', async () =>
+      await this.request
+        .post('/history')
+        .set('Authorization', `Bearer ${token}`)
+        .trustLocalhost()
+        .send({
+          cardId: cardIdOne
+        })
+        .expect(200)
+        .then(response => {
+          assert.deepStrictEqual(response.body.code, 'TRAN022');
+          assert.deepStrictEqual(response.body.message, 'Transaction history retrieved');
+          assert.deepStrictEqual(response.body.history !== undefined, true);
+        })
+    );
+  });
+
+  describe('with a valid PIN and an invalid JWT', () => {
+    it('should return a API003 - Forbidden response', async () =>
+      await this.request
+        .post('/history')
+        .set('Authorization', 'Bearer abcde.fghij.klmno')
+        .trustLocalhost()
+        .send({
+          cardId: cardIdOne
+        })
+        .expect(200)
+        .then(response => {
+          assert.deepStrictEqual(response.body.code, 'API003');
+          assert.deepStrictEqual(response.body.message, 'Forbidden');
+        })
+    );
+  });
+
+  describe('with a valid PIN and no JWT', () => {
+    it('should return a API002 - Unauthorized response', async () =>
+      await this.request
+        .post('/history')
+        .trustLocalhost()
+        .send({
+          cardId: cardIdOne
         })
         .expect(200)
         .then(response => {
