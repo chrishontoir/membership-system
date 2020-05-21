@@ -18,6 +18,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: yarn
     - run: yarn test-coverage:authentication-api
     - run: yarn test-coverage:registration-api
     - run: yarn test-coverage:transaction-api
