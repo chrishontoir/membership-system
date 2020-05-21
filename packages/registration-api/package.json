@@ -8,6 +8,7 @@
     "start": "node src/app/server.js",
     "dev": "nodemon --watch ../../**/**.js src/app/server.js",
     "test-unit": "mocha --colors --exit --timeout 20000 './test/unit/**/*.spec.js'",
+    "test-integration": "SUT_URL=https://localhost:3000 mocha --colors --timeout 20000 './test/integration/**.spec.js'",
     "test-coverage": "nyc mocha --colors --exit --timeout 20000 './test/unit/**/*.spec.js'",
     "api-edit": "openapi-editor --file ./swagger.yml --port 4000"
   },
