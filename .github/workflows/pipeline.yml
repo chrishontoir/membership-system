@@ -22,4 +22,5 @@ jobs:
     - run: yarn test-coverage:authentication-api
     - run: yarn test-coverage:registration-api
     - run: yarn test-coverage:transaction-api
+    - run: docker network create membership_system
     - run: yarn docker-dev:authentication-api
