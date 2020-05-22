@@ -3,9 +3,9 @@ const env = process.env;
 const defaults = {
   port: 3000,
   db: {
-    host: 'database', // server name or IP address;
+    host: 'database',
     port: 5432,
-    database: 'blog',
+    database: 'memstem',
     user: 'postgres',
     password: 'postgres'
   },

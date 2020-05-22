@@ -6,12 +6,12 @@
 	"db": {
     "host": "database",
     "port": 5432,
-    "database": "blog",
-    "user": "postgres",
-    "password": "postgres"
+    "database": "%%DB_NAME%%",
+    "user": "%%DB_USERNAME%%",
+    "password": "%%DB_PASSWORD%%"
   },
   "tls": {
-    "key": "../../../../../certificates/memstem-key.pem",
-    "cert": "../../../../../certificates/memstem-cert.pem"
+    "key": "../../../../certificates/memstem-key.pem",
+    "cert": "../../../../certificates/memstem-cert.pem"
   }
 }

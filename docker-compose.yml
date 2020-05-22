@@ -7,11 +7,11 @@ services:
       dockerfile: ./Dockerfile
     container_name: database
     environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      DB_NAME: "blog"
-      POSTGRES_DB: blog
-      PGPORT: 5432
+      POSTGRES_USER: "%%DB_USERNAME%%"
+      POSTGRES_PASSWORD: "%%DB_PASSWORD%%"
+      DB_NAME: "%%DB_NAME%%"
+      POSTGRES_DB: "%%DB_NAME%%"
+      PGPORT: "%%DB_PORT%"
   registration-api:
     build:
       context: .

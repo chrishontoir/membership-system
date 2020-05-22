@@ -41,3 +41,18 @@ yarn docker-dev:authentication-api
 yarn docker-dev:transaction-api
 ```
 *Using `docker-dev` instead of `docker` exposes the ports to localhost.
+
+---
+---
+
+## Integration Tests
+Start all of the services with their ports exposed to localhost
+```
+yarn docker-dev:registration-api
+yarn docker-dev:authentication-api
+yarn docker-dev:transaction-api
+```
+Run the script which executes the suite of integration tests
+```
+yarn test-integration
+```

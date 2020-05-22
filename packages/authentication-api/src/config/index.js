@@ -3,15 +3,15 @@ const env = process.env;
 const defaults = {
   port: 3001,
   db: {
-    host: 'database', // server name or IP address;
+    host: 'database',
     port: 5432,
     database: 'blog',
     user: 'postgres',
     password: 'postgres'
   },
   tls: {
-    key: '../../../../../certificates/memstem-key.pem',
-    cert: '../../../../../certificates/memstem-cert.pem'
+    key: '../../../../certificates/memstem-key.pem',
+    cert: '../../../../certificates/memstem-cert.pem'
   }
 };
 

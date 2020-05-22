@@ -9,8 +9,8 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
-      DB_NAME: "blog"
-      POSTGRES_DB: blog
+      DB_NAME: "memstem"
+      POSTGRES_DB: memstem
       PGPORT: 5432
   registration-api:
     build:
