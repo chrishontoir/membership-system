@@ -4,7 +4,7 @@ ARG PORT
 
 WORKDIR /opt/app
 
-COPY package.json yarn.lock ./
+COPY package.json ../../yarn.lock ./
 
 COPY ./ ./
 
