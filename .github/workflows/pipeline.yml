@@ -26,3 +26,7 @@ jobs:
     - run: echo ${{secrets.DOCKER_PASS}} | docker login https://docker.pkg.github.com -u ${{secrets.DOCKER_USERNAME}} --password-stdin
     - run: docker build -t docker.pkg.github.com/chrishontoir/membership-system/registration-api:latest ./packages/registration-api/
     - run: docker push docker.pkg.github.com/chrishontoir/membership-system/registration-api:latest
+    - run: docker build -t docker.pkg.github.com/chrishontoir/membership-system/authentication-api:latest ./packages/authentication-api/
+    - run: docker push docker.pkg.github.com/chrishontoir/membership-system/authentication-api:latest
+    - run: docker build -t docker.pkg.github.com/chrishontoir/membership-system/transaction-api:latest ./packages/transaction-api/
+    - run: docker push docker.pkg.github.com/chrishontoir/membership-system/transaction-api:latest
