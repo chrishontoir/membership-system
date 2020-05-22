@@ -5,7 +5,7 @@ const defaults = {
   db: {
     host: 'database',
     port: 5432,
-    database: 'blog',
+    database: 'memstem',
     user: 'postgres',
     password: 'postgres'
   },
