@@ -17,7 +17,6 @@ const getHistory = async (ctx, request) => {
       return getResponse('TRAN023');
     }
   } catch (error) {
-    console.log(error)
     return getResponse('TRAN025');
   } finally {
     ctx.db.$pool.end();

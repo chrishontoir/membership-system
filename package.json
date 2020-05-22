@@ -35,22 +35,19 @@
     "docker-dev:transaction-api": "docker-compose -f docker-compose-dev.yml up --build --force-recreate transaction-api",
 
     "test-unit": "NODE_ENV=test lerna run test-unit --stream",
-    "test-unit:common": "NODE_ENV=test lerna run --scope common test-unit --stream",
     "test-unit:authentication-api": "NODE_ENV=test lerna run --scope authentication-api test-unit --stream",
     "test-unit:registration-api": "NODE_ENV=test lerna run --scope registration-api test-unit --stream",
     "test-unit:transaction-api": "NODE_ENV=test lerna run --scope transaction-api test-unit --stream",
 
     "test-integration": "NODE_ENV=test mocha --colors --timeout 20000 './integration/**.spec.js'",
 
-    "test-coverage:common": "NODE_ENV=test lerna run --scope common test-coverage --stream ; yarn coverage-report:common",
     "test-coverage:authentication-api": "NODE_ENV=test lerna run --scope authentication-api test-coverage --stream",
     "test-coverage:registration-api": "NODE_ENV=test lerna run --scope registration-api test-coverage --stream",
     "test-coverage:transaction-api": "NODE_ENV=test lerna run --scope transaction-api test-coverage --stream",
 
-    "coverage-report:common": "open packages/common/reports/test/unit/coverage/lcov-report/index.html",
-    "coverage-report:authentication-api": "open packages/authentication-api/reports/test/unit/coverage/lcov-report/index.html",
-    "coverage-report:registration-api": "open packages/registration-api/reports/test/unit/coverage/lcov-report/index.html",
-    "coverage-report:transaction-api": "open packages/transaction-api/reports/test/unit/coverage/lcov-report/index.html",
+    "report-coverage:authentication-api": "open packages/authentication-api/reports/test/unit/coverage/lcov-report/index.html",
+    "report-coverage:registration-api": "open packages/registration-api/reports/test/unit/coverage/lcov-report/index.html",
+    "report-coverage:transaction-api": "open packages/transaction-api/reports/test/unit/coverage/lcov-report/index.html",
 
     "lint": "eslint packages/**/*.js",
     "lint:fix": "yarn run lint --fix"
