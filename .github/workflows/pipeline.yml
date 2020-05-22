@@ -23,3 +23,4 @@ jobs:
     - run: yarn test-coverage:registration-api
     - run: yarn test-coverage:transaction-api
     - run: yarn lint
+    - run: docker login https://docker.pkg.github.com -u ${{secrets.DOCKER_USERNAME}} --password ${{secrets.DOCKER_PASS}}
