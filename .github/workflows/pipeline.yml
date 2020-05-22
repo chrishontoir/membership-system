@@ -24,3 +24,5 @@ jobs:
     - run: yarn test-coverage:transaction-api
     - run: yarn lint
     - run: echo ${{secrets.DOCKER_PASS}} | docker login https://docker.pkg.github.com -u ${{secrets.DOCKER_USERNAME}} --password-stdin
+    - run: docker build -t docker.pkg.github.com/chrishontoir/membership-system/registration-api:latest ./packages/registration-api/
+    - run: docker push docker.pkg.github.com/chrishontoir/membership-system/registration-api:latest
